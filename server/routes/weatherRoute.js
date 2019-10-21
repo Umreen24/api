@@ -69,10 +69,18 @@ weatherRouter.get('/', [
               json: true
             }
             rp(options)
-            .then(r => console.log(r.daily.data[0]))
+            .then(r => {
+                let weatherResponseObj = {
+                    city: req.query.city,
+                    state: req.query.state,
+                    weather_date: req.query.weather_date,
+                    summary: r.daily.data[0].summary,
+                    high_temp: r.daily.data[0].temperatureHigh,
+                    low_temp: r.daily.data[0].temperatureLow
+                }
+                res.json({weatherResponse: weatherResponseObj})
+            })
         })
-  
-    res.json(city)    
 })
 
 module.exports = weatherRouter
