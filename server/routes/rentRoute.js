@@ -13,7 +13,7 @@ client.connect()
 
 rentRoute.get('/', [
     check('compare').isIn(['greater', 'less']).withMessage('Incorrect comparison string entered'),
-    check('avgRent').isInt().withMessage('Rent must be a number'),
+    check('rent').isInt().withMessage('Rent must be a number'),
     check('quantity').isInt().withMessage('Quantity must be a number'),
     check('key').isIn(process.env.API_CLIENT_KEY.split(',')).withMessage('invalid client key')
 
@@ -26,7 +26,7 @@ rentRoute.get('/', [
     }
 
     const compare = req.query.compare
-    const avgRent = req.query.avgRent
+    const rent = req.query.rent
     const quantity = req.query.quantity
     const key = req.query.key
     const date_format = new Intl.DateTimeFormat('en-us', { dateStyle: 'short' })
@@ -54,8 +54,14 @@ rentRoute.get('/', [
     
     compare === 'greater' ? compareQuery = '>' : compareQuery = '<'
 
-   client.query(`SELECT city, state, avg_rent FROM city_rents WHERE avg_rent ${compareQuery} ${avgRent} LIMIT ${quantity}`)
-    .then(result => res.json(result))
+   client.query(`SELECT city, state, avg_rent FROM city_rents WHERE avg_rent ${compareQuery} ${rent} LIMIT ${quantity}`)
+    .then(result => {
+        let rentResponseObj = {
+            rentInput: req.query.rent,
+            rentQueryResponse: result.rows
+        }
+        res.json({rentResponse: rentResponseObj})
+    })
     .catch((e) => console.log(e))
 })
 
