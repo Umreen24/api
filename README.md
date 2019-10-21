@@ -54,3 +54,10 @@ http://localhost:PORT/weather?city=Houston&state=TX&weather_date=2019-10-01&key=
 
 <b><h3>Weather Result</h3></b>
 <img src='weather.png' width=425px height=200px/>
+
+<h2>Errors</h2>
+
+If you do not have an API key, you will receive the following error.
+
+<img src='errors.png' width=275px height=200px/>
+
