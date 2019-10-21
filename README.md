@@ -49,5 +49,8 @@ The specific date you would like to query. This must be a valid date sent in YYY
 <b>key</b><br/>
 Private key availabe upon request.
 
+<h3>Weather Example Query (ran locally)</h3> 
+http://localhost:PORT/weather?city=Houston&state=TX&weather_date=2019-10-01&key=API_KEY
+
 <b><h3>Weather Result</h3></b>
 <img src='weather.png' width=425px height=200px/>
