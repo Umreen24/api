@@ -17,7 +17,7 @@ client.connect()
 weatherRouter.get('/', [
     check('city').isString().withMessage('City must be a string'),
     check('state').isString().withMessage('State must be a string'),
-    check('weather_date').exists().withMessage('Date must be a valid date'),
+    check('weather_date').matches(/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/).withMessage('Date must be a valid date'),
     check('key').isIn(process.env.API_CLIENT_KEY.split(',')).withMessage('Invalid client key')
 
 ], (req, res) => {
