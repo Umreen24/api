@@ -17,7 +17,7 @@ app.use('/rent', rentRouter)
 
 //root route 
 app.get('/', (req, res) => {
-    res.send('Where Should I Live?')
+    res.send('Where Should I Live API! Please see readme for API instructions.')
 })
 
 //server
