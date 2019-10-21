@@ -48,7 +48,7 @@ rentRoute.get('/', [
             client.query(`UPDATE api_key_limit SET api_calls = api_calls + 1 WHERE key = '${key}'`)
         }
         else {
-            return res.status(422).json({ errors: 'API Limit Reached'}) 
+            return res.status(422).json({ errors: 'API call limit reached'}) 
         }
     })
     
